@@ -2,7 +2,11 @@ baseURL = "http://example.org/"
 languageCode = "en-us"
 title = "Andreas Wass"
 theme = "ananke"
+SectionPagesMenu = "main"
 
 [params]
 background_color_class = "bg-navy"
 recent_posts_number = 4
+body_classes = "avenir bg-near-white"
+post_content_classes = "avenir"
+github = "https://www.github.com/AndWass"
