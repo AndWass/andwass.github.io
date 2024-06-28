@@ -72,15 +72,17 @@ compiler error on those, we are left with a higher safety margin.
 
 ### What about other tools
 
-Cargo, and the various tools that can be run by a simple `cargo <tool>` invocation is awesome, it makes it dead simple to
-run static analysis tools and enables the usage of a whole slew of different tools. But when it comes to safety the best
+Cargo, and the various tools that can be run by a simple `cargo <tool>` invocation is awesome! It makes it dead simple to
+run static analysis tools, and many other useful tools. But when it comes to safety the best
 tool is the compiler. Because that will always run. Shifting responsibility to static analysis tools is something that
-C and C++ has historically done as well, but I that might be slowly changing as well.
+C and C++ has historically done as well, but I think that might be slowly changing as well. There are pushs towards
+moving diagnostics to the compiler instead of relying on additional tools.
 
-I am wondering if `crates.io` could play a role to increase the safety margins as well? Together with existing or new tools?
-I only have very vague thoughts on the subject, but I think there is value in figuring out which crates are in most need
-to be (continuesly) audited, due to them needing a large amount of unsafe code. And the more they can be audited automatically
-on a new release to `crates.io` the better.
+I am also wondering if `crates.io` could play a role to increase the safety margins as well? Together with existing or new tools?
+I only have very vague thoughts on the subject but I think there is value in figuring out which crates are in most need
+of being (continuesly) audited, due to them needing a large amount of unsafe code. And the more they can be audited automatically
+on a new release to `crates.io` the better. Could there be other useful metrics to guide users in determining if a crate is sound
+or not which could be displayed?
 
 ## What about C/C++
 
@@ -92,3 +94,11 @@ I am a bit worried though that the committee is seeking a purely technical solut
 community tools as well. There are tools available today that increases the safety and security, but they must be used. And the same
 would go for any technical solution; it must be used.
 
+## Conclusion
+
+Rusts safety story relies, at least partially, on the community adhering to the praxis that safe code can never exhibit undefined behaviour.
+As the community grows I think there is a risk that this adherence might gradually decline. If it declines enough it might spell trouble
+for Rusts reputation as a safe language.
+
+To combat this I think it would be interesting to see if there are any unsafe patterns that should error at compile time. Utilizing `crates.io`
+as an auditing point and figuring out useful metrics to guide users could also be interesting.
