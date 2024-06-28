@@ -14,6 +14,10 @@ unsafe parts. If used correctly, safe Rust can then build safe abstractions arou
 property of no undefined behaviour in safe Rust is then upheld. If the programmer fails to create a fully safe wrapper, so that safe Rust
 can cause undefined behaviour, the code is said to be unsound.
 
+This usage of `unsafe` gives us a very nice property that if your code, and all your dependencies, is written without using `unsafe`
+then your program cannot exhibit undefined behaviour. And even if you or your dependencies use `unsafe` code, as long as that code
+is correct your program still cannot exhibit undefined behaviour.
+
 This is in contrast to C and C++, where there is no such marker or distinction, and so it becomes much harder to
 isolate the code that can cause undefined behaviour, and find code that could potentially cause undefined behaviour.
 When discussing C and C++ code the discussion does not mention soundness in the same way. It is generally
@@ -31,7 +35,7 @@ pub fn deref_ptr(ptr: *const i32) -> i32 {
 
 From the language perspective this is valid code, no language rule prevents me from writing this
 code, or using it, or even publishing to `crates.io`. Using it with an invalid pointer is wrong though, so in Rust it is not a
-socially acceptable function. The Rust community will tell you that it is unsound since `deref_i32_ptr`
+socially acceptable function. The Rust community will tell you that it is unsound since `deref_ptr`
 isn't marked `unsafe`. I should also note that `cargo clippy` does warn on this function, but change it to
 
 ```rust
@@ -50,9 +54,10 @@ I would argue that in C, and to a certain extenct C++, the equivalent functions 
 by the community, as long as any pre-conditions are mentioned in the documentation. The lack of an `unsafe` equivalent keyword
 really hinders the community from imposing restrictions.
 
-Within Rust these restrictions are enforced entirely by the community though.
+Within Rust these restrictions are enforced entirely by the community though. Is there room for improvement though?
+And can this pose a long-term risk of trust and safety erosion?
 
-## What does this mean for Rust?
+## Growing community == erosion?
 
 The `unsafe` keyword and its intended usage relies on crate authors to buy
 in to the division between safe and unsafe code and the requirement that safe code never exhibits undefined behaviour.
