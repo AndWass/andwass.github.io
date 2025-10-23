@@ -79,6 +79,7 @@ Incidentally this is one area where I think C++ got things exactly right.
 
 Lets look at various scenarios and see how C++ and Rust compares.
 
+{::nomarkdown}
 <table>
   <tr>
     <th>Rust</th>
@@ -161,9 +162,9 @@ auto do_something = [=] { do_something_impl(some_data); };
       </pre>
     </td>
   </tr>
-  
 </table>
-
+{:/}
+    
 We can see that C++ gives both full control, and shorthands. Essentially in this case C++ allows for the best of both worlds.
 
 In terms of our requirements we tick both boxes....almost.
